@@ -3,6 +3,7 @@ import dotenv, { config } from 'dotenv'
 import express from "express";
 dotenv.config();
 import User from "./models/user.js";
+import foodItem from "./models/foodItem.js";
 
 
 const app = express();
@@ -79,6 +80,40 @@ app.post('/signup', async(req,res)=>{
 
     })
 })
+
+app.post('/foodItem' , async(req, res)=>{
+    const {title, description, imgUrl, price, category} = req.body;
+
+    const foodItem  = new foodItem({
+        title:title,
+        description:description,
+        imgUrl:imgUrl,
+        price:price,
+        category:category
+    })
+
+    const savedfoodItem = await foodItem.save();
+    res.json({
+        success:true,
+        message: "Food item saved successfully...",
+        data : savedfoodItem
+    })
+})
+
+app.get("/foodItemByCategory", async(req,res)=>{
+    const {category} = req.query;
+
+    const foodItem = await foodItem.find({
+        category:category
+    })
+
+    res.json({
+        success:true,
+        message:"Food item fetched successfully..",
+        data: foodItem
+    })
+})
+
 // API ends here
 
 app.listen(PORT, ()=>{
