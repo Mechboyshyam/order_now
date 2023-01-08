@@ -81,6 +81,33 @@ app.post('/signup', async(req,res)=>{
     })
 })
 
+app.post('/login', async(req,res)=>{
+    const {email, password} = req.body;
+
+    if (!email || !password) {
+        return res.json({
+            success:false,
+            message: "Email and password are required"
+    })
+    }
+
+    const existingUser = await User.findOne({email:email , password:password});
+        if (existingUser) {
+            return res.json({
+                success:true,
+                message: "Login successful.",
+                data : existingUser
+            })
+        }
+
+        else {
+            return res.json({
+                success:false,
+                message: "Email or Password invalid"
+            })
+        }
+})
+
 app.post('/foodItem' , async(req, res)=>{
     const {title, description, imgUrl, price, category} = req.body;
 
@@ -104,7 +131,7 @@ app.get("/foodItemByCategory", async(req,res)=>{
     const {category} = req.query;
 
     const foodItem = await foodItem.find({
-        category:category
+        category:{$regex: category, $options:'i'}
     })
 
     res.json({
@@ -113,6 +140,22 @@ app.get("/foodItemByCategory", async(req,res)=>{
         data: foodItem
     })
 })
+
+app.get('/foodItemsByTitle', async(req,res)=>{
+    const {title} = req.query;
+
+    const foodItem = await foodItem.find({
+        title: {$regex: title, $options:'i'}
+    })
+
+    res.json({
+        success:true,
+        message: "Food item fetched successfully",
+        data: foodItem
+    })
+})
+
+
 
 // API ends here
 
