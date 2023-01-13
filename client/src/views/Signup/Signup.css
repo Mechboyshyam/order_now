@@ -1,0 +1,28 @@
+ .user-input{
+    display: block;
+    width: 300px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 25px;
+    padding-left: 10px;
+ }
+
+ .form-container{
+    background-color: #fcd27c;
+    width: 400px;
+    padding: 20px;
+    border-radius: 20px;
+    margin: 0;
+ }
+
+ .signup-button{
+    font-size: 25px;
+    background-color: #7c8bfc;
+    color: white;
+    margin: 10px;
+    border-radius: 8px;
+    border: 1px solid white;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+ }
