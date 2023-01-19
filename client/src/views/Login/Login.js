@@ -9,7 +9,7 @@ function Login() {
 
     useEffect(()=>{
         if(currentUser){
-            window.location.href='/'
+            window.location.href= "/"
         }
     })
 
@@ -17,7 +17,7 @@ function Login() {
         const response = await axios.post('/login', {
 
             email: email,
-            password: password,
+            password: password
         })
 
         console.log(response.data)
