@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import './Signup.css'
+import {currentUser} from '../../util/currentUser.js';
 
 function Signup() {
     const [name, setName] = useState("")
@@ -8,6 +9,12 @@ function Signup() {
     const [phone, setPhone] = useState("")
     const [password, setPassword] = useState("")
     const [role, setRole] = useState("user")
+
+    useEffect(()=>{
+        if(currentUser){
+            window.location.href='/'
+        }
+    })
 
     async function signupUser() {
         const response = await axios.post('/signup', {

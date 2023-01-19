@@ -1,42 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import './Login.css'
+import {currentUser} from '../../util/currentUser.js';
 
 function Login() {
-
     const [email, setEmail] = useState("")
-
     const [password, setPassword] = useState("")
 
+    useEffect(()=>{
+        if(currentUser){
+            window.location.href='/'
+        }
+    })
 
     async function loginUser() {
-        const response = await axios.post('/signup', {
+        const response = await axios.post('/login', {
 
             email: email,
-
             password: password,
-
         })
 
         console.log(response.data)
         if (response.data.success) {
             alert(response.data.message)
-            window.location.href = '/login'
+            localStorage.setItem('currentUser', JSON.stringify(response.data.data));
+            window.location.href='/'
         }
 
         else {
             alert(response.data.message)
-
             setEmail('')
-
             setPassword('')
-
         }
     }
 
     return (
         <div>
-            <h1 className="text-center">Signup</h1>
+            <h1 className="text-center">Login</h1>
             <div className="row">
                 <div className="col-md-6">
 
