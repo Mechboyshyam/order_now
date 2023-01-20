@@ -6,6 +6,7 @@ import User from "./models/user.js";
 import foodItem from "./models/foodItem.js";
 import Table from "./models/table.js";
 import Order from "./models/order.js";
+import foodItem from "./models/foodItem.js";
 
 const app = express();
 app.use(express.json());
@@ -126,6 +127,16 @@ app.post('/foodItem' , async(req, res)=>{
         success:true,
         message: "Food item saved successfully...",
         data : savedfoodItem
+    })
+})
+
+app.get("/allFoodItems", async(req,res)=>{
+    const foodItem = await foodItem.find()
+
+    res.json({
+        success:true,
+        message:'food item fetched succesfully',
+        data: foodItem
     })
 })
 
