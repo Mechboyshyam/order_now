@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import swal from 'sweetalert';
 import './Signup.css'
 import {currentUser} from '../../util/currentUser.js';
 
