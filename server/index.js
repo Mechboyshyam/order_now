@@ -6,7 +6,6 @@ import User from "./models/user.js";
 import foodItem from "./models/foodItem.js";
 import Table from "./models/table.js";
 import Order from "./models/order.js";
-import foodItem from "./models/foodItem.js";
 
 const app = express();
 app.use(express.json());

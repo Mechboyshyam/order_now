@@ -24,7 +24,7 @@ function Home(){
     }
 
     useEffect(()=>{
-        if(searchText.length>0){
+        if(searchText.length > 0){
             fetchSpecificItem()
         }
         else{
@@ -37,9 +37,9 @@ function Home(){
         window.location.href= '/login'
     }
 
-    if(!currentUser){
-        window.location.href = '/login'
-    }
+    useEffect(()=>{
+        loginRequired()
+    } , [])
 
     return(<div>
         <div className='text-center'>Home</div>
