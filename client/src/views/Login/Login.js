@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import swal from 'sweetalert';
+
 import './Login.css'
 import {currentUser} from '../../util/currentUser.js';
 
@@ -27,7 +28,9 @@ function Login() {
                 title: "Success",
                 text: response.data.message,
                 icon: "success",
-                button: "Aww yiss!"});
+                button: "Aww yiss!",
+            });
+
             localStorage.setItem('currentUser', JSON.stringify(response.data.data));
             window.location.href='/'
         }
@@ -56,8 +59,6 @@ function Login() {
                 <div className="col-md-6">
                     <div className="form-container">
                         <form>
-
-
                             <div>
                                 <label htmlFor="name">Email</label>
                                 <input type='email' id='email'
@@ -86,4 +87,4 @@ function Login() {
     )
 }
 
-export default Login;
+export default Login

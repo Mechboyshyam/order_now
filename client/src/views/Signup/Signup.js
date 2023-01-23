@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import swal from 'sweetalert';
+
 import './Signup.css'
 import {currentUser} from '../../util/currentUser.js';
 
@@ -15,7 +16,7 @@ function Signup() {
         if(currentUser){
             window.location.href='/'
         }
-    })
+    },[])
 
     async function signupUser() {
         const response = await axios.post('/signup', {
@@ -28,12 +29,22 @@ function Signup() {
 
         console.log(response.data)
         if (response.data.success) {
-            alert(response.data.message)
+            await swal({
+                title: "Success",
+                text: response.data.message,
+                icon: "success",
+                button: "Aww yiss!",
+              });
             window.location.href = '/login'
         }
 
         else {
-            alert(response.data.message)
+            swal({
+                title: "Error",
+                text: response.data.message,
+                icon: "error",
+                button: "Try Again!",
+              });
             setName('')
             setEmail('')
             setPhone('')

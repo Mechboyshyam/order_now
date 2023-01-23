@@ -2,6 +2,9 @@ import React , {useEffect, useState} from 'react';
 import axios from 'axios'
 
 import './home.css'
+import FoodItemCard from './../../components/FoodItemCard/FoodItemCard'
+import Navbar from './../../components/Navbar/Navbar'
+
 import {currentUser} from '../../util/currentUser.js';
 import {loginRequired} from './../../util/loginRequired'
 
@@ -19,7 +22,7 @@ function Home(){
 
     async function fetchSpecificItem(){
         console.log('fetching specific items')
-        const response = await axios.get(`/allFoodItems?title=${searchText}`)
+        const response = await axios.get(`/foodItems?title=${searchText}`)
         console.log(response.data.data)
         setAllFoodItems(response.data.data)
     }
@@ -43,7 +46,6 @@ function Home(){
     } , [])
 
     return(<div>
-        <div className='text-center'>Home</div>
         <h2>{currentUser?.name}</h2>
 
         <div className='search-container'>
@@ -51,10 +53,20 @@ function Home(){
             value={searchText} onChange={(e)=> setsearchText(e.target.value)} />
         </div>
 
+        <div className='food-items-result'>
+        <div class="row">
+        {
+         currentFoodItems?.map((foodItem, index)=>{
+           return (<FoodItemCard description={foodItem.description} category={foodItem.category} title={foodItem.title} price={foodItem.price} imgUrl={foodItem.imgUrl}  key={index}/>)
+         })
+        }
+        </div>
+      </div>
+
 
         <button type='button' className='btn btn-primary' onClick={logout}>Logout</button>
         </div>
     )
 }
 
-export default Home;
+export default Home
