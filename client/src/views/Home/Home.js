@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import './home.css'
 import {currentUser} from '../../util/currentUser.js';
+import {loginRequired} from './../../util/loginRequired'
 
 function Home(){
 
