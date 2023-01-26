@@ -3,7 +3,7 @@ import dotenv, { config } from 'dotenv'
 import express from "express";
 dotenv.config();
 import User from "./models/user.js";
-import foodItem from "./models/foodItem.js";
+import FoodItem from "./models/foodItem.js"
 import Table from "./models/table.js";
 import Order from "./models/order.js";
 
@@ -110,27 +110,28 @@ app.post('/login', async(req,res)=>{
         }
 })
 
-app.post('/foodItem' , async(req, res)=>{
+app.post("/createFoodItem", async(req, res)=>{
     const {title, description, imgUrl, price, category} = req.body;
 
-    const foodItem  = new foodItem({
-        title:title,
-        description:description,
-        imgUrl:imgUrl,
-        price:price,
-        category:category
+    const foodItem = new FoodItem({
+        title: title,
+        description: description,
+        imgUrl: imgUrl,
+        price: price,
+        category: category
     })
 
-    const savedfoodItem = await foodItem.save();
+    const savedFoodItem = await foodItem.save();
+
     res.json({
-        success:true,
-        message: "Food item saved successfully...",
-        data : savedfoodItem
+        success: true,
+        message: "Food Item created successfully",
+        data: savedFoodItem
     })
 })
 
 app.get("/allFoodItems", async(req,res)=>{
-    const foodItem = await foodItem.find()
+    const foodItem = await FoodItem.find()
 
     res.json({
         success:true,
@@ -153,10 +154,10 @@ app.get("/foodItemByCategory", async(req,res)=>{
     })
 })
 
-app.get('/foodItemsByTitle', async(req,res)=>{
+app.get('/foodItems', async(req,res)=>{
     const {title} = req.query;
 
-    const foodItem = await foodItem.find({
+    const foodItem = await FoodItem.find({
         title: {$regex: title, $options:'i'}
     })
 

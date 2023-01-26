@@ -1,12 +1,11 @@
-import mongoose, { Schema, model } from "mongoose";
-const  foodItemSchema = new mongoose.Schema({
-    title:String,
-    description: String,
-    imgUrl:String,
-    price: Number,
-    category:String
-})
+import {Schema, model} from 'mongoose';
 
-const foodItem = model("foodItem", foodItemSchema)
+const foodItemSchema = new Schema({
+  title: String,
+  description: String,
+  imgUrl: String,
+  price: Number,
+  category: String})
 
-export default foodItem;
+const FoodItem = model("FoodItem", foodItemSchema)
+export default FoodItem
