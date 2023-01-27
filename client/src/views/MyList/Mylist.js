@@ -1,5 +1,5 @@
 import React from 'react'
-import './MyList.css'
+import './Mylist.css'
 import Navbar from '../../components/Navbar/Navbar'
 
 import {myFoodListItems} from '../../util/myList'

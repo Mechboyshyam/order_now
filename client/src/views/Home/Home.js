@@ -1,6 +1,7 @@
 import React , {useEffect, useState} from 'react';
 import axios from 'axios'
 
+import Navbar from './../../components/Navbar/Navbar.js'
 import './home.css'
 import FoodItemCard from './../../components/FoodItemCard/FoodItemCard'
 
@@ -45,7 +46,7 @@ function Home(){
     } , [])
 
     return(<div>
-        <h2>{currentUser?.name}</h2>
+        <Navbar user={currentUser?.name} />
 
         <div className='search-container'>
             <input type="text" placeholder='Search' className='input-search'
