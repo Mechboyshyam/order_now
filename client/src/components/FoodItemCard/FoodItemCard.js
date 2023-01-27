@@ -32,9 +32,9 @@ function FoodItemCard({ category, description, imgUrl, price, title }) {
         <div>
           <img src={imgUrl} class="food-item-card-header-img" />
         </div>
-        <h3>{title}</h3>
-        <p>{description || title}</p>
-        <p>{price}/- Only</p>
+        <h3 className='title-item'>{title}</h3>
+        <span>{description || title}</span><br/>
+        <span>{price}/- Only</span><br/>
         <span>{category}</span>
 
         <div className='quantity-btn-container'>

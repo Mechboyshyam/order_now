@@ -3,8 +3,9 @@ import React,{useEffect} from 'react'
 import { loginRequired } from './../../util/loginRequired'
 
 import "./MyOrders.css"
+import Navbar from '../../components/Navbar/Navbar'
 
-function MyOrders() {
+function MyOrders(){
 
   useEffect(() => {
     loginRequired()
@@ -12,7 +13,10 @@ function MyOrders() {
 
   return (
     <div>
-      <h1>My Orders</h1>
+      <Navbar/>
+      <div>
+        <h3>Your orders---</h3>
+      </div>
     </div>
   )
 }
