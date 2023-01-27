@@ -1,10 +1,29 @@
 import React from 'react'
+import axios from 'axios';
+import swal from 'sweetalert';
+
+import {currentUser} from '../../util/currentUser.js'
 import './Mylist.css'
 import Navbar from '../../components/Navbar/Navbar'
 
 import {myFoodListItems} from '../../util/myList'
 
 function MyList() {
+  async function placeFoodOrder(){
+    const response = await axios.post("/orderFoodItems", {
+      userId: currentUser._id,
+      tableNumber: localStorage.getItem("tableNumber") || 1,
+      items: myFoodListItems
+    })
+
+    if(response.data.success){
+     await swal(
+        "Order placed", response.data.message, "success")
+        localStorage.removeItem("list")
+        window.location.href='/'
+
+    }
+  }
   return (
     <div>
       <Navbar/>
@@ -20,7 +39,7 @@ function MyList() {
           </div>)
         })
       }
-      <button className='btn btn-primary'>Confirm Order</button>
+      <button className='btn btn-primary' onClick={placeFoodOrder}>Confirm Order</button>
     </div>
   )
 }
