@@ -22,7 +22,7 @@ function Navbar({ user }) {
               </li>
             </ul>
             <form class="d-flex align-items-center">
-            <h4 className='me-2 text-light text-decoration- username'>Hello {user}</h4>
+            <h4 className='me-5 text-light text-decoration- username'>Hello {user}</h4>
             <a class="nav-link active text-light me-2 " aria-current="page" href="/"><h4>Home</h4></a>
             <Link to="/myList" className='text-decoration-none'>
                 <h4 className='me-2 my-list'>Cart {foodItemCount}</h4>

@@ -7,9 +7,13 @@
   }
 
   .logo-order{
-    font-size: 3rem;
+    font-size: 2rem;
   }
 
   .username{
    text-decoration:underline;
+  }
+
+  .search-item{
+    width: 150px;
   }

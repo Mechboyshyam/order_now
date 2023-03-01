@@ -49,7 +49,7 @@ function Home(){
         <Navbar user={currentUser?.name} />
 
         <div className='search-container'>
-            <input type="text" placeholder='Search' className='input-search'
+            <input type="text" placeholder='Search here...' className='input-search me-2' aria-label="Search"
             value={searchText} onChange={(e)=> setSearchText(e.target.value)} />
         </div>
 

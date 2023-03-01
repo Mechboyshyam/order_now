@@ -6,6 +6,8 @@ import User from "./models/user.js";
 import FoodItem from "./models/foodItem.js"
 import Table from "./models/table.js";
 import Order from "./models/order.js";
+import path from "path";
+const __dirname = path.resolve();
 
 const app = express();
 app.use(express.json());
@@ -293,6 +295,10 @@ app.get("/ordersByUserId", async(req,res)=>{
     })
 })
 // API ends here
+
+app.use(express.static(path.join(__dirname,'..','client','build')));
+
+app.get('*',(req,res)=>{res.sendFile(path.join(__dirname,'..','client','build','index.html'))});
 
 app.listen(PORT, ()=>{
     console.log(`Server is running on port ${PORT}`)

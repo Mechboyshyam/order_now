@@ -1,7 +1,7 @@
 .food-item-card{
     margin: 5px;
     padding: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(5, 52, 5);
     width: 300px;
     border-radius: 5px;
     box-shadow: 0 0 3px #808080;
